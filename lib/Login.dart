@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:proyecto_flutter/Principal.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -76,6 +77,7 @@ class _loginState extends State<login> {
                 ),
               ),
               onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> PrincipalPage()));
               },
               child: const Text("Iniciar Sesion",style: TextStyle(fontWeight: FontWeight.bold, fontSize:15)),
             ),

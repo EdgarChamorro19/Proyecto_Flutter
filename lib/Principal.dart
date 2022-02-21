@@ -5,7 +5,15 @@ class PrincipalPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.indigo,
+      ),
+      debugShowCheckedModeBanner: false,
+      title: "Principal",
+      home: Principal(
+      ),
+    );
   }
 }
 
@@ -19,6 +27,16 @@ class Principal extends StatefulWidget {
 class _PrincipalState extends State<Principal> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Pagina Principal'),
+      ),
+      body: SafeArea(
+        child: Column(
+          children: <Widget> [
+          ],
+        ), 
+      ),
+    );
   }
 }

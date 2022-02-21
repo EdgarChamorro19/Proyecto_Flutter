@@ -78,7 +78,6 @@ class _InicioState extends State<Inicio> {
                 child: const Text("REGISTRARSE",style: TextStyle(fontWeight: FontWeight.bold, fontSize:15))
               ),
             ),
-            
           ],
         ),
       ),
