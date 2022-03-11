@@ -41,7 +41,7 @@ class _RegisterState extends State<Register> {
                 decoration: InputDecoration(
                 prefixIcon: Icon(Icons.person),
                 border: OutlineInputBorder(),
-                labelText: 'Correo Electronico'
+                labelText: 'Cedula'
                   ),
               ),
             ),
@@ -51,7 +51,7 @@ class _RegisterState extends State<Register> {
                 decoration: InputDecoration(
                 prefixIcon: Icon(Icons.person),
                 border: OutlineInputBorder(),
-                labelText: 'Correo Electronico'
+                labelText: 'Nombre'
                   ),
               ),
             ),
@@ -61,7 +61,27 @@ class _RegisterState extends State<Register> {
                 decoration: InputDecoration(
                 prefixIcon: Icon(Icons.person),
                 border: OutlineInputBorder(),
-                labelText: 'Correo Electronico'
+                labelText: 'Apellido'
+                  ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 25,vertical: 20),
+              child:TextFormField(
+                decoration: InputDecoration(
+                prefixIcon: Icon(Icons.person),
+                border: OutlineInputBorder(),
+                labelText: 'Email'
+                  ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              child:TextFormField(
+                decoration: InputDecoration(
+                prefixIcon: Icon(Icons.person),
+                border: OutlineInputBorder(),
+                labelText: 'Contraseña'
                   ),
               ),
             ),
