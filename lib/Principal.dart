@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_flutter/pages/InsertarPedido.dart';
+import 'package:proyecto_flutter/pages/ListadoPedidos.dart';
+import 'package:proyecto_flutter/pages/Perfil.dart';
 
 class PrincipalPage extends StatelessWidget {
   const PrincipalPage({Key? key}) : super(key: key);
@@ -26,42 +29,23 @@ class Principal extends StatefulWidget {
 
 
 class _PrincipalState extends State<Principal> {
-  int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Inicio',
-      style: optionStyle,
-    ),
-    Text(
-      'Usuario',
-      style: optionStyle,
-    ),
+  int currentIndex = 0;
+  final screens =[
+    ListadoPedidos(),
+    InsertarPedidos(),
+    Perfil()
   ];
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      currentIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pagina Principal'),
-      ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-
-        },
-        child: Icon(Icons.add),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked ,
+      body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -69,11 +53,15 @@ class _PrincipalState extends State<Principal> {
             label: 'Inicio',
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.local_grocery_store_rounded),
+            label: 'Realizar Pedido',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.person_pin_rounded),
             label: 'Usuario',
           ),
         ],
-        currentIndex: _selectedIndex,
+        currentIndex: currentIndex,
         selectedItemColor: Colors.indigo[300],
         onTap: _onItemTapped,
       ),
