@@ -74,7 +74,7 @@ class _PrincipalState extends State<Principal> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.indigo,
+        selectedItemColor: Colors.indigo[300],
         onTap: _onItemTapped,
       ),
     );
