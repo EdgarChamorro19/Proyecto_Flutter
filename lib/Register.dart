@@ -142,7 +142,7 @@ class _RegisterState extends State<Register> {
   }
   
   void registrarUsuarios(){
-    var url = Uri.parse("http://192.168.200.14/Flutter/agregarUsuario.php");
+    var url = Uri.parse("http://192.168.200.14/apiFlutter/agregarUsuario.php");
     http.post(url,body: {
       "Cedula": controllerCedula.text,
       "Nombre": controllerNombre.text, 
