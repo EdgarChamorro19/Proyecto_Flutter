@@ -158,6 +158,5 @@ class _InsertarPedidosState extends State<InsertarPedidos> {
       "detalle": controllerDetallePedido.text,
       "estado": 'Por Confirmar'
     });
-  
   }
 }
