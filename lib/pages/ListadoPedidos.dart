@@ -38,19 +38,19 @@ class _ListadoPedidosState extends State<ListadoPedidos> {
         title: Text("Listado Pedidos"),
       ),
       body: Container(
-        child: ListView.separated(
+        child: ListView.builder(
             itemCount: pedidosList.length,
             itemBuilder:(context,index)=>
             Card(
               margin: const EdgeInsets.all(15),
               child: ListTile(
                 leading: FlutterLogo(size: 50),
-                title: Text(pedidosList[index]['shipper'], style:TextStyle(fontWeight: FontWeight.bold, fontSize:18) ,),
+                title: Text(pedidosList[index]['shipper'], style:TextStyle(fontWeight: FontWeight.bold, fontSize:18)),
                 subtitle: Text("A Nombre de: "+pedidosList[index]['consigner']),
                 trailing: Icon(Icons.more_vert),
                 isThreeLine: true,
               ),
-            ), separatorBuilder: (BuildContext context, int index)=> const Divider(),
+            ),
           ),
       ),
     );
