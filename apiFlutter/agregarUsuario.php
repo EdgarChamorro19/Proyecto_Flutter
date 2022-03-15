@@ -16,9 +16,9 @@
 		$rs=$st_check->get_result();
 		
 		if ($rs->num_rows==0) {
-			echo"Incorrecto";
+			echo json_encode("Incorrecto");
 		}else{
-			echo"correcto";
+			echo json_encode("correcto");
 		}
 	}
 ?>

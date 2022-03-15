@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -131,6 +133,7 @@ class _RegisterState extends State<Register> {
                 ),
                 onPressed: (){
                   registrarUsuarios();
+
                 },
                 child: const Text("Registrarse",style: TextStyle(fontWeight: FontWeight.bold, fontSize:15)),
               ),
@@ -141,7 +144,7 @@ class _RegisterState extends State<Register> {
     );
   }
   
-  void registrarUsuarios(){
+  Future<void> registrarUsuarios() async {
     var url = Uri.parse("http://192.168.200.14/apiFlutter/agregarUsuario.php");
     http.post(url,body: {
       "Cedula": controllerCedula.text,

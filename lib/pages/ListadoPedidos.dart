@@ -38,7 +38,7 @@ class _ListadoPedidosState extends State<ListadoPedidos> {
         title: Text("Listado Pedidos"),
       ),
       body: Container(
-          child: ListView.builder(
+        child: ListView.separated(
             itemCount: pedidosList.length,
             itemBuilder:(context,index)=>
             Card(
@@ -50,7 +50,7 @@ class _ListadoPedidosState extends State<ListadoPedidos> {
                 trailing: Icon(Icons.more_vert),
                 isThreeLine: true,
               ),
-            ),
+            ), separatorBuilder: (BuildContext context, int index)=> const Divider(),
           ),
       ),
     );
