@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-03-2022 a las 19:06:25
+-- Tiempo de generación: 15-03-2022 a las 04:37:37
 -- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.1.1
+-- Versión de PHP: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,15 +29,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `pedidos` (
   `id` int(15) NOT NULL,
-  `date` date NOT NULL,
+  `fecha` datetime NOT NULL,
   `shipper` varchar(50) NOT NULL,
-  `consignee` varchar(50) NOT NULL,
+  `consigner` varchar(50) NOT NULL,
   `carrier` varchar(50) NOT NULL,
   `tracking` varchar(50) NOT NULL,
   `valorcompra` decimal(10,2) NOT NULL,
   `detalle` text NOT NULL,
   `estado` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `pedidos`
+--
+
+INSERT INTO `pedidos` (`id`, `fecha`, `shipper`, `consigner`, `carrier`, `tracking`, `valorcompra`, `detalle`, `estado`) VALUES
+(1, '2022-03-14 00:00:00', 'Amazon', 'Edgar Chamorro', 'Servientrega', 'No se que es esto', '50.00', 'Camiseta Adidas Negra Talla S', 'Por Confirmar');
 
 -- --------------------------------------------------------
 
@@ -59,7 +66,11 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`Cedula`, `Nombre`, `Apellido`, `Email`, `Password`, `Rol`) VALUES
-('0956378416', 'Edgar', 'Chamorro', 'edgar@gmail.com', 'edgar123', 'Cliente');
+('0956378416', 'Edgar', 'Chamorro', 'edgar@gmail.com', 'edgar123', 'Cliente'),
+('0963258741', 'Jose', 'Perez', 'jose@gmail.com', 'jose123', 'Cliente'),
+('0963258745', 'Jose', 'Perez', 'jose01@gmail.com', 'jose123', 'Cliente'),
+('0986324856', 'Luis', 'Hernandez', 'luis@gmail.com', 'luis123', 'Cliente'),
+('0987653215', 'Pepe', 'Parrales', 'pepe@gmail.com', 'pepe123', 'Cliente');
 
 --
 -- Índices para tablas volcadas
@@ -85,7 +96,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
