@@ -26,13 +26,15 @@ class LoginPage extends StatelessWidget {
 }
 
 class login extends StatefulWidget {
+  
   login({Key? key}) : super(key: key);
-
+ 
   @override
   State<login> createState() => _loginState();
 }
 
 class _loginState extends State<login> {
+  List usuarioDatos=[];
   bool _isObscure= true;
 
   TextEditingController controllerEmail = TextEditingController();
@@ -89,6 +91,7 @@ class _loginState extends State<login> {
               ),
               onPressed: (){
                 login();
+                obtenerDatos();
               },
               child: const Text("Iniciar Sesion",style: TextStyle(fontWeight: FontWeight.bold, fontSize:15)),
             ),
@@ -110,11 +113,10 @@ class _loginState extends State<login> {
         sharedPreferences.setString('email', controllerEmail.text);
 
         Fluttertoast.showToast(
-          msg: "Bienvenido",
+          msg: ("Bienvenido "+controllerEmail.text),
           toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.green,
           textColor: Colors.white,
           fontSize: 16.0
         );
@@ -122,14 +124,30 @@ class _loginState extends State<login> {
         Navigator.push(context, MaterialPageRoute(builder: (context)=> PrincipalPage()));
       }else{
         Fluttertoast.showToast(
-          msg: "Error",
+          msg: "Usuario o Contraseña Incorrectos",
           toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.red,
           textColor: Colors.white,
           fontSize: 16.0
         );
       }
+  }
+
+  Future obtenerDatos() async{
+    var url = Uri.parse("http://192.168.200.14/apiFlutter/obtenerUsuario.php");
+    var response = await http.post (url, body: {
+      "Email":controllerEmail.text,
+    });
+    usuarioDatos = json.decode(response.body);
+    var cedula= usuarioDatos[0]['Cedula'];
+    var nombres= usuarioDatos[0]['Nombre']+" "+usuarioDatos[0]['Apellido'];
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString('cedula', cedula);
+    sharedPreferences.setString('nombres', nombres);
+    print(cedula);
+    print(nombres);
+    return usuarioDatos;
+
   }
 }

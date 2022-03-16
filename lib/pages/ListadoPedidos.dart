@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ListadoPedidos extends StatefulWidget {
   ListadoPedidos({Key? key}) : super(key: key);
@@ -15,8 +16,12 @@ class _ListadoPedidosState extends State<ListadoPedidos> {
   List pedidosList = [];
   
   Future obtenerPedidos() async{
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    var cedusuario= sharedPreferences.getString('cedula');
     var url = Uri.parse("http://192.168.200.14/apiFlutter/listarPedidos.php");
-    var response = await http.get(url);
+    var response = await http.post (url, body: {
+      "Cedula":cedusuario,
+    });
     if(response.statusCode == 200){
       setState(() {
         pedidosList = json.decode(response.body);

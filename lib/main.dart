@@ -1,14 +1,20 @@
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:proyecto_flutter/Login.dart';
+import 'package:proyecto_flutter/Principal.dart';
 import 'package:proyecto_flutter/Register.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 void main() => runApp(MiApp());
 
-
+late String datofinal;
 class MiApp extends StatelessWidget {
   const MiApp({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +38,22 @@ class Inicio extends StatefulWidget {
 }
 
 class _InicioState extends State<Inicio> {
+
+  @override
+  void initState(){
+    getValidationData().whenComplete(()async{
+      Timer(Duration(seconds:2),() => Get.to(datofinal == null ? MiApp(): PrincipalPage()));
+    });
+    super.initState();
+  }
+
+  Future getValidationData() async{
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    setState(() {
+      var datofinal = sharedPreferences.getString('email');
+    });
+    print(datofinal);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

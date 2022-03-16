@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 class InsertarPedidos extends StatefulWidget {
   InsertarPedidos({Key? key}) : super(key: key);
 
@@ -146,9 +147,11 @@ class _InsertarPedidosState extends State<InsertarPedidos> {
     );
   }
   
-  void ingresarPedido(){
+  void ingresarPedido() async{
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    var usuarioCedula= sharedPreferences.getString('cedula');
     var url = Uri.parse("http://192.168.200.14/apiFlutter/agregarPedidos.php");
-    http.post(url,body: {
+    var response = await http.post(url,body: {
       "fecha": controllerFecha.text,
       "shipper": controllerShipper.text, 
       "consigner": controllerConsigner.text,
@@ -156,7 +159,28 @@ class _InsertarPedidosState extends State<InsertarPedidos> {
       "tracking": controllerTracking.text,
       "valorcompra": controllerValorCompra.text,
       "detalle": controllerDetallePedido.text,
-      "estado": 'Por Confirmar'
+      "estado": 'Por Confirmar',
+      "CedUsuario":usuarioCedula
     });
+    if(response.statusCode == 200){
+      Fluttertoast.showToast(
+          msg: ("Pedido Realizado con Exito"),
+          toastLength: Toast.LENGTH_SHORT,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+          fontSize: 16.0
+        );
+    }else{
+      Fluttertoast.showToast(
+          msg: "Error Pedido No se Realizo",
+          toastLength: Toast.LENGTH_SHORT,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+        );
+
+    }
   }
 }
