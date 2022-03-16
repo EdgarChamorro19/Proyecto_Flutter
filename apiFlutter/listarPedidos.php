@@ -2,7 +2,11 @@
 
   include('conexion.php');
 
-  $result=$mysqli->query("SELECT * FROM pedidos ");
+  $cedula = $_POST['Cedula'];
+
+  $result=$mysqli->query("SELECT p.id, p.fecha,p.shipper,p.consigner,p.carrier,p.tracking,p.valorcompra,
+                          p.detalle,p.estado FROM pedidos p INNER JOIN usuario u on p.CedUsuario = u.Cedula 
+                          WHERE u.Cedula = '".$cedula."' ");
 
   $list = array();
 
