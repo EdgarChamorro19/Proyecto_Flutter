@@ -25,6 +25,7 @@ class _InsertarPedidosState extends State<InsertarPedidos> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Realizar Pedido"),
+        backgroundColor: Colors.indigoAccent,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -130,6 +131,7 @@ class _InsertarPedidosState extends State<InsertarPedidos> {
               margin: EdgeInsets.symmetric(vertical: 15),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
+                  primary: Colors.indigoAccent,
                   minimumSize: Size( 340, 55),
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(13))
@@ -167,7 +169,7 @@ class _InsertarPedidosState extends State<InsertarPedidos> {
           msg: ("Pedido Realizado con Exito"),
           toastLength: Toast.LENGTH_SHORT,
           timeInSecForIosWeb: 1,
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.greenAccent,
           textColor: Colors.white,
           fontSize: 16.0
         );

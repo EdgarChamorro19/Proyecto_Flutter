@@ -84,6 +84,7 @@ class _loginState extends State<login> {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
+                primary: Colors.indigoAccent,
                 minimumSize: Size( 340, 55),
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(13))

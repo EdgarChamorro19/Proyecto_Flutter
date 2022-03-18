@@ -74,6 +74,7 @@ class _InicioState extends State<Inicio> {
               margin: EdgeInsets.symmetric(vertical: 15),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
+                  primary: Colors.indigoAccent,
                   minimumSize: Size( 340, 55),
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(13))
@@ -89,6 +90,7 @@ class _InicioState extends State<Inicio> {
               margin: EdgeInsets.symmetric(vertical: 4),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
+                  primary: Colors.indigoAccent,
                   minimumSize: Size( 340, 55),
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(13))

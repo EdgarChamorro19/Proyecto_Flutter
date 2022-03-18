@@ -27,6 +27,8 @@ class _ListadoPedidosState extends State<ListadoPedidos> {
         pedidosList = json.decode(response.body);
       });
       print(pedidosList);
+      var estado= pedidosList[0]['estado'];
+      sharedPreferences.setString('Estado', estado);
       return pedidosList;
     }
   }
@@ -36,25 +38,65 @@ class _ListadoPedidosState extends State<ListadoPedidos> {
     obtenerPedidos();
   }
 
+  // ignore: prefer_final_fields
+  List<Map<String, IconData>> _categories = [
+    {
+      'Por Confirmar': Icons.access_time_outlined
+    },
+    {
+      'Aceptado': Icons.check
+    },
+    {
+      'Cancelado': Icons.cancel
+    },
+    {
+      'Enviado': Icons.delivery_dining_outlined
+    },
+];
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text("Listado Pedidos"),
+        backgroundColor: Colors.indigoAccent,
       ),
       body: Container(
         child: ListView.builder(
             itemCount: pedidosList.length,
             itemBuilder:(context,index)=>
             Card(
+              elevation: 5,
               margin: const EdgeInsets.all(15),
               child: ListTile(
-                leading: FlutterLogo(size: 50),
+                minVerticalPadding: 10,
+                leading: FlutterLogo(size: 45),
                 title: Text(pedidosList[index]['shipper'], style:TextStyle(fontWeight: FontWeight.bold, fontSize:18)),
-                subtitle: Text("A Nombre de: "+pedidosList[index]['consigner']),
-                trailing: Icon(Icons.more_vert),
+                subtitle: Column(
+                  children: [
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Id Pedido: "+pedidosList[index]['id']+"     "+"Total: \$"+pedidosList[index]['valorcompra']),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      child: Text("A Nombre de: "+pedidosList[index]['consigner']),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Detalle: "+pedidosList[index]['detalle']),
+                    ),
+                  ],
+                ),
+                trailing:
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical:10),
+                      child: Icon(_categories[0][pedidosList[index]['estado']]),
+                    ),
                 isThreeLine: true,
-              ),
+              ),    
             ),
           ),
       ),

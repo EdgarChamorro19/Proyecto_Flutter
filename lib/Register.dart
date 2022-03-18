@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
 class RegisterPage extends StatelessWidget {
@@ -123,9 +124,10 @@ class _RegisterState extends State<Register> {
               ),
             ),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 15),
+              margin: EdgeInsets.symmetric(vertical: 25),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
+                  primary: Colors.indigoAccent,
                   minimumSize: Size( 340, 55),
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(13))
@@ -146,7 +148,7 @@ class _RegisterState extends State<Register> {
   
   Future<void> registrarUsuarios() async {
     var url = Uri.parse("http://192.168.200.14/apiFlutter/agregarUsuario.php");
-    http.post(url,body: {
+    var response= await http.post(url,body: {
       "Cedula": controllerCedula.text,
       "Nombre": controllerNombre.text, 
       "Apellido": controllerApellido.text,
@@ -154,5 +156,25 @@ class _RegisterState extends State<Register> {
       "Password": controllerPassword.text,
       "Rol": 'Cliente'
     });
+    if(response.statusCode == 200){
+      Fluttertoast.showToast(
+          msg: ("Usuario Registrado con Exito"),
+          toastLength: Toast.LENGTH_SHORT,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.greenAccent,
+          textColor: Colors.white,
+          fontSize: 16.0
+        );
+    }else{
+      Fluttertoast.showToast(
+          msg:("Error Pedido No se Realizo"),
+          toastLength: Toast.LENGTH_SHORT,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+        );
+
+    }
   }
 }

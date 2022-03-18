@@ -58,11 +58,11 @@ class _PrincipalState extends State<Principal> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_pin_rounded),
-            label: 'Usuario',
+            label: 'Perfil',
           ),
         ],
         currentIndex: currentIndex,
-        selectedItemColor: Colors.indigo[300],
+        selectedItemColor: Colors.indigoAccent,
         onTap: _onItemTapped,
       ),
     );
