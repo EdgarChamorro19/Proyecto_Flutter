@@ -146,7 +146,7 @@ class _RegisterState extends State<Register> {
     );
   }
   
-  Future<void> registrarUsuarios() async {
+  Future registrarUsuarios() async {
     var url = Uri.parse("http://192.168.200.14/apiFlutter/agregarUsuario.php");
     var response= await http.post(url,body: {
       "Cedula": controllerCedula.text,
